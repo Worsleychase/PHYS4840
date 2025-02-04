@@ -1,0 +1,32 @@
+// log.txt
+// 1-30-25
+
+Exercise 3:
+[chaserix@archlinux 1-30-25]$ python ex3.py
+Vector: [1, 2, 3]
+3.7416573867739413
+
+[chaserix@archlinux 1-30-25]$ python ex3.py
+Vector: [1, 2]
+Traceback (most recent call last):
+  File "/home/chaserix/Documents/PHYS_4830/1-30-25/ex3.py", line 12, in <module>
+    print(myFunc(vec))
+          ~~~~~~^^^^^
+  File "/home/chaserix/Documents/PHYS_4830/1-30-25/ex3.py", line 6, in myFunc
+    c = inVec[2]
+        ~~~~~^^^
+IndexError: list index out of range
+// This error happens because c is trying to assign itself to an index that does not exist for anything under a size 3 array
+
+[chaserix@archlinux 1-30-25]$ python ex3.py
+Vector: [1, 2, 3, 4]
+5.477225575051661
+
+-----------------------------------------------------------------
+
+Exercise 4:
+[chaserix@archlinux 1-30-25]$ python ex4.py
+3.7416573867739413
+
+
+

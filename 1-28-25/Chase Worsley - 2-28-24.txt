@@ -1,0 +1,18 @@
+// Chase Worsley 2-28-24
+
+[chaserix@archlinux PHYS_4830]$ which python
+/usr/bin/python
+[chaserix@archlinux PHYS_4830]$ echo PYTHON_PATH
+PYTHON_PATH
+[chaserix@archlinux PHYS_4830]$ echo $PYTHON_PATH
+/usr/bin/python
+--------------------------------------------------
+Ex 1) SyntaxError
+--------------------------------------------------
+Ex 2) ZeroDivisionError
+--------------------------------------------------
+Ex 3) TypeError
+--------------------------------------------------
+Guess Error Thing:
+    Guess = B
+    Misunderstood question, thought it was asking where the failing error was

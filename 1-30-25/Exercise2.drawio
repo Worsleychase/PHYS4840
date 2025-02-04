@@ -1,0 +1,101 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0" version="26.0.10">
+  <diagram name="Page-1" id="phx-YKFMBEC6P9j83-ub">
+    <mxGraphModel dx="880" dy="434" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="uAJI2Bd36F2nDndBRg5e-27" target="uAJI2Bd36F2nDndBRg5e-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-27" value="Request user input (total money)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="uAJI2Bd36F2nDndBRg5e-29" target="uAJI2Bd36F2nDndBRg5e-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-29" value="Load prices and names of cookies into two seperate arrs" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="510" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="uAJI2Bd36F2nDndBRg5e-31" target="uAJI2Bd36F2nDndBRg5e-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-35" value="% == 0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="uAJI2Bd36F2nDndBRg5e-34">
+          <mxGeometry x="-0.3" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="uAJI2Bd36F2nDndBRg5e-31" target="uAJI2Bd36F2nDndBRg5e-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-38" value="% != 0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="uAJI2Bd36F2nDndBRg5e-37">
+          <mxGeometry x="-0.3" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-31" value="For each cookie, check if you can buy a perfect amount using %" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="620" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-33" value="Output cookie to buy, exit program" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="620" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-40" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="uAJI2Bd36F2nDndBRg5e-36" target="uAJI2Bd36F2nDndBRg5e-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-41" value="// == 0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="uAJI2Bd36F2nDndBRg5e-40">
+          <mxGeometry x="-0.45" y="-1" relative="1" as="geometry">
+            <mxPoint x="8" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="uAJI2Bd36F2nDndBRg5e-36" target="uAJI2Bd36F2nDndBRg5e-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-44" value="// != 0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="uAJI2Bd36F2nDndBRg5e-43">
+          <mxGeometry x="-0.24" y="-4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-36" value="For each cookie, see if you can buy any using //" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="740" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-39" value="Ignore cookie (break)" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="740" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-46" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="uAJI2Bd36F2nDndBRg5e-42" target="uAJI2Bd36F2nDndBRg5e-45">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-47" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="uAJI2Bd36F2nDndBRg5e-42" target="uAJI2Bd36F2nDndBRg5e-45">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-42" value="Compute remainder" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="850" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="uAJI2Bd36F2nDndBRg5e-45" target="uAJI2Bd36F2nDndBRg5e-54">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-45" value="Add number that can be purchased to correct index in order arr" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="960" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-49" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" target="uAJI2Bd36F2nDndBRg5e-50" source="uAJI2Bd36F2nDndBRg5e-42">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="549.5" y="910" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-52" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="uAJI2Bd36F2nDndBRg5e-50" target="uAJI2Bd36F2nDndBRg5e-51">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-50" value="Add remainder to remainder arr" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="429.5" y="960" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-55" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="uAJI2Bd36F2nDndBRg5e-51" target="uAJI2Bd36F2nDndBRg5e-54">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-51" value="Find minimum remainder, keep index" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="1050" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uAJI2Bd36F2nDndBRg5e-54" value="Use said index to output # of cookie, type of cookie, and remainder" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="1150" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
