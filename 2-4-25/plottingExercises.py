@@ -13,7 +13,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
-sys.path.append('/home/chaserix/Documents/PHYS4840/')
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 ## in your functions library, which should 
 ## be in a different file, define the function
 #
