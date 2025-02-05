@@ -16,3 +16,5 @@ Homework 1
     For example, I have a single laptop at home running 10 virtual machines and linux shells (on Proxmox) that allow me to host my own VPN, media server, adblocker, password manager, and much more. Also, actual computation relies
     heavily on Linux and Linux distros. Without them, computing would take place on heavy and bulky OS's like Windows and MacOS. All modern infrastructure uses Linux (or Unix) and without it we wouldn't have any networking,
     AI, supercomputing, services, and more for as cheap as they are.
+
+Time taken: ~3 hours
