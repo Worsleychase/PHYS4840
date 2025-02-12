@@ -1,4 +1,4 @@
-0. See 2-6-25 for finished lab
+0. See [2-6-25](https://github.com/Worsleychase/PHYS4840/tree/main/2-6-25) for finished lab
 
 1. See `prob1.py` for code and `prob1.png` for plot. The isochrone is a good fit for this cluster because we can see that both datasets show the same model (although at different vertical offsets) in the curved region on the right. 
 
