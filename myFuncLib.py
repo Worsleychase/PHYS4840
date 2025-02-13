@@ -1,5 +1,5 @@
 import numpy as np
-import scipy as sp
+import scipy
 import matplotlib.pyplot as plt
 
 def myFunc (inVec):
@@ -12,3 +12,8 @@ def myFunc (inVec):
 def y(x):
     y = 2.0*x**3.0	
     return y
+
+# mu = 5log_10(d/10) = m-M
+def distMod(x):
+    return 5*np.log10(x/10)
+
