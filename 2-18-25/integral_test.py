@@ -116,7 +116,17 @@ def timing_function(integration_method, x_values, y_values, integral_arg):
     
     return end_time - start_time, result
 
+def gaussLeg(f,N):
+    roots, weights = np.polynomial.legendre.leggauss(n)
 
+    sum = 0
+    for i in range(N):
+        root = roots[i]
+        weight = weights[i]
+        eval = weight*f(root)
+        sum += eval
+
+    integral_approx = sum
 
 # Function to integrate
 def function(x):
@@ -160,8 +170,8 @@ trapTimeArr = []
 simpTimeArr = []
 rombTimeArr = []
 
-nArr = np.arange(1,10000,100)
 
+nArr = np.arange(1,20,1)
 for N in nArr:
     trap_time, trap_result = timing_function(trapezoidal, x_data, y_data, N)
     trapTimeArr.append(trap_time)
@@ -169,30 +179,58 @@ for N in nArr:
     simp_time, simp_result = timing_function(simpsons, x_data, y_data, N)
     simpTimeArr.append(simp_time)
     simpErrArr.append(abs(simp_result-true_value))
-    romb_time, romb_result = timing_function(romberg, x_data, y_data, max_order)
+    romb_time, romb_result = timing_function(romberg, x_data, y_data, N)
     rombTimeArr.append(romb_time)
     rombErrArr.append(abs(romb_result-true_value))
 
 
-fig, ax = plt.subplots(2,1,figsize=(8,16))
+fig, ax = plt.subplots(3,1,figsize=(10,18))
 
-ax[0].scatter(trapErrArr, nArr, color='blue', marker='x', s=30, label='Trap')
-ax[0].scatter(rombErrArr, nArr, color='red', marker='o', s=30, label='Romb')
-ax[0].scatter(simpErrArr, nArr, color='green', marker='1', s=30, label='Simp')
+ax[0].scatter(nArr, trapErrArr, color='blue', marker='x', s=30, label='Trap')
+ax[0].scatter(nArr, rombErrArr, color='red', marker='o', s=30, label='Romb')
+ax[0].scatter(nArr, simpErrArr, color='green', marker='1', s=30, label='Simp')
+ax[0].plot(nArr, trapErrArr, color='blue', label='Trap')
+ax[0].plot(nArr, rombErrArr, color='red', label='Romb')
+ax[0].plot(nArr, simpErrArr, color='green', label='Simp')
 ax[0].set_yscale('linear')
-ax[0].set_xscale('log')
-ax[0].set_xlabel('N values (log)')
+ax[0].set_xscale('linear')
+ax[0].set_xlabel('N')
 ax[0].set_ylabel('Error of Method')
+ax[0].set_xlim(0,20)
 ax[0].legend()
 
-ax[1].scatter(trapTimeArr, nArr, color='blue', marker='x', s=30, label='Trap')
-ax[1].scatter(rombTimeArr, nArr, color='red', marker='o', s=30, label='Romb')
-ax[1].scatter(simpTimeArr, nArr, color='green', marker='1', s=30, label='Simp')
+ax[1].scatter(nArr, trapTimeArr, color='blue', marker='x', s=30, label='Trap')
+ax[1].scatter(nArr, rombTimeArr, color='red', marker='o', s=30, label='Romb')
+ax[1].scatter(nArr, simpTimeArr, color='green', marker='1', s=30, label='Simp')
+ax[1].plot(nArr, trapTimeArr, color='blue', label='Trap')
+ax[1].plot(nArr, rombTimeArr, color='red', label='Romb')
+ax[1].plot(nArr, simpTimeArr, color='green',label='Simp')
 ax[1].set_yscale('linear')
-ax[1].set_xscale('log')
-ax[1].set_xlabel('N values (log)')
+ax[1].set_xscale('linear')
+ax[1].set_xlabel('N')
+ax[1].set_xlim(0,20)
 ax[1].set_ylabel('Time Taken')
-ax[1].legend()
+ax[1].legend(loc='upper left')
 
+computeTimeTrap = []
+computeTimeSimp = []
+computeTimeRomb = []
+for i in range(len(trapTimeArr)):
+    computeTimeTrap.append(trapTimeArr[i]*trapErrArr[i])
+    computeTimeSimp.append(simpTimeArr[i]*simpErrArr[i])
+    computeTimeRomb.append(rombTimeArr[i]*rombErrArr[i])
+
+ax[2].scatter(nArr, computeTimeTrap, color='blue', marker='x', s=30, label='Trap')
+ax[2].scatter(nArr, computeTimeRomb, color='red', marker='o', s=30, label='Romb')
+ax[2].scatter(nArr, computeTimeSimp, color='green', marker='1', s=30, label='Simp')
+ax[2].plot(nArr, computeTimeTrap, color='blue', label='Trap')
+ax[2].plot(nArr, computeTimeRomb, color='red', label='Romb')
+ax[2].plot(nArr, computeTimeSimp, color='green', label='Simp')
+ax[2].set_xlabel('N')
+ax[2].set_xlim(0,20)
+ax[2].set_ylabel('Compute Time \n(Time*Error)')
+ax[2].legend()
+
+plt.tight_layout()
 plt.show()
-plt.savefig('plot.png')
+fig.savefig('plot.png')
