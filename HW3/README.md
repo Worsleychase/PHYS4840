@@ -44,3 +44,7 @@ See `prob3.py`.
 
 ## Problem 4:
 See `prob4.py`.
+
+### Time Taken:
+$\approx$ 4 hours
+
