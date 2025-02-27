@@ -232,9 +232,5 @@ ax[2].set_ylabel('Compute Time \n(Time*Error)')
 ax[2].legend()
 
 plt.tight_layout()
-<<<<<<< HEAD
 plt.show()
 fig.savefig('plot.png')
-=======
-plt.show()
->>>>>>> 7a7c862cfc422cbe3ea07c5ec9f4db6982f1abbb
