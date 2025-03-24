@@ -9,6 +9,8 @@ A = array([[2, 1, 4, 1],
 ## dimension 
 N = len(A)
 
+b = [1,6.3,-3,12]
+
 # Initialize L as the N=4 identity matrix 
 L = np.array([[1.0 if i == j else 0.0 for j in range(N)] for i in range(N)])
 # this above is just a more explicit way of doing
@@ -38,5 +40,25 @@ print('The upper triangular matrix U is:\n', U)
 ## Write the next part of this program:
 ##  How do we solve the system of equations using forward and backward substitution?
 ##  Use L and U to solve Ax = b for a given vector b.
+
+# Forward
+y = np.zeros(N, float)
+for i in range(N):
+    y[i] = b[i]
+    for j in range(i):
+        y[i] -= L[i, j] * y[j]
+    y[i] /= L[i, i]
+
+print('The solution vector y is:', y)
+
+# Backward
+x = np.zeros(N, float)
+for i in range(N-1, -1, -1):
+    x[i] = y[i]
+    for j in range(i+1, N):
+        x[i] -= U[i, j] * x[j]
+    x[i] /= U[i, i]
+
+print('The solution vector x is:', x)
 
 ## HINT: see the end of 6.1.4 in your textbook (equations 6.37 through 6.39 in my version)

@@ -48,20 +48,12 @@ print('the upper diagonal version of A is: \n', A)
 ##  an upper-diagonal matrix?
 
 ## you may consult example 6.1 in your textbook if you need help
-varArrTest = [0] * (N)
-thing = 0
-for i in range(N-1,-1,-1):
-	for k in range(N-1):
-		thing += A[i,i-k]*varArrTest[i]
-		
-	varArrTest[i] = (vector[i] - thing)/A[i,i]
-	thing = 0
+varArrTest = np.zeros(N, float)
 
-print(vector)
+for i in range(N - 1, -1, -1):
+    sum = 0
+    for j in range(i + 1, N):
+        sum += A[i, j] * varArrTest[j]
+    varArrTest[i] = (vector[i] - sum) / A[i, i]
 
-# 1x + 0.5y + 2z + 0.5w = vector[0]
-# 0x + 1y -2.8z - 1w    = vector[1]     y = (vector[1]-coeff*z-coeff*w)/coeff
-# 0x + 0y + 1z - 0w     = vector[2]     z = (vector[2]-coeff*w)/coeff
-# 0x + 0y + 0z + 1w     = vector[3]     w = vector[3]/coeff
-
-print(varArrTest)
+print('The solution vector is:', varArrTest)
