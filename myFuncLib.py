@@ -57,3 +57,13 @@ def qr_decomposition(A):
         Q[:, j] = v / R[j, j]  # Normalize
 
     return Q, R
+
+def euler_method(f, x0, t0, t_end, dt):
+    t_values = np.arange(t0, t_end + dt, dt) # makes a numpy array starting at t0 going to t_end+dt, in increments of dt
+    x_values = np.zeros(len(t_values)) # makes an array with same length of t_values, fills with 0's
+    x_values[0] = x0 # sets first value in x_values to x0
+
+    for i in range(1, len(t_values)): # iterate through array going from 1 to length of t_values
+        x_values[i] = x_values[i - 1] + dt * f(x_values[i-1], t_values[i-1]) # sets x_value[i] where i is the current index to the previous x_value (i-1) + dt * f(x,t)
+
+    return t_values, x_values # returns t_values and x_values
