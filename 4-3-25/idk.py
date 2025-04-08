@@ -1,0 +1,2 @@
+# 2thetadotdot1 + thetadotdot2*cos(theta1-theta2) + thetadot2^2*sin(theta1-theta2) + 2(g/l)sin(theta1) = 0
+# thetadotdot2  + thetadotdot1*cos(theta1-theta2) - thetadot1^2*sin(theta1-theta2) + (g/l)*sin(theta2) = 0
