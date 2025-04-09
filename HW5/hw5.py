@@ -115,9 +115,12 @@ for t in tpoints:
     x += (k1+2*k2+2*k3+k4)/6
 
 start = time.time()
+
 a1 = 0.0
 b1 = 10000.0
-N1 = 1000
+#N1 = 100
+#N1 = 1000
+N1 = 10000
 h1 = (b1-a1)/N1
 
 tpoints1 = np.arange(a1,b1,h1)
@@ -131,9 +134,9 @@ for t1 in tpoints1:
     k3 = h1*func(x1+0.5*k2, t1+0.5*h1)
     k4 = h1*func(x1+k3, t1+h1)
     x1 += (k1+2*k2+2*k3+k4)/6
+
 stop = time.time()
 total = stop-start
-
 print(f"Python took {total} seconds to run")
 
 tFort4,xFort4 = np.loadtxt("prob3-1.dat", unpack=True, skiprows = 1)
@@ -147,8 +150,53 @@ plt.xlim(0, 10)
 plt.ylim(-1,1)
 plt.ylabel("x(t)")
 plt.legend()
-plt.title(f"[0,10] | N = {N}")
+plt.title(f"[0,10] | N = {N1}")
 
 plt.tight_layout()
 plt.savefig("prob3.png")
 plt.close()
+
+
+# Problem 4 Answer(s) --------------------------------------------------------------------------------
+
+'''
+a) 
+With n = 100, Python took 0.0006099079132080078 seconds to compute
+Fortran took 0.001120 seconds to run, 0.047572 seconds to compile
+
+With n = 10000, Python took 0.05193497657775879 seconds to compute
+Fortran took 0.018692 seconds to run, 0.048676 seconds to compile
+
+
+F or P  |  n  | compile  |   run
+-----------------------------------
+Fortran |  10 | 0.053046 | 0.000919
+Python  |  10 |    N/A   | 0.000229
+
+Fortran |  50 | 0.052727 | 0.001335
+Python  |  50 |    N/A   | 0.000342
+
+Fortran | 5000| 0.043258 | 0.004944
+Python  | 5000|    N/A   | 0.029223
+
+Fortran | 300 | 0.053662 | 0.001180
+Python  | 300 |    N/A   | 0.001588
+
+
+It looks like Python is faster for n < 300 (ish) and Fortran is faster for n >= 300 (ish)
+
+'''
+
+# Problem 5 --------------------------------------------------------------------------------
+
+'''
+chmod changes the permissions/rights of a file or directory 
+
+the +x parameter allows the file/directory to execute, so it can run whatever it does
+
+Python files are just text files that can be ran with the interpreter, which then executes instructions on the CPU
+
+Fortran (and other compiled languages) are compiled directly into binary executables, and big surprise, executables have the right to execute :D.
+
+'''
+
