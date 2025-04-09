@@ -31,7 +31,7 @@ program RungeKutta2
     ! ===============================
     t = 0.0d0
     x = 1.0d0
-    dt = 10.0d0
+    dt = 0.1d0
     t_end = 10000.0d0
     n = int(t_end / dt)
 

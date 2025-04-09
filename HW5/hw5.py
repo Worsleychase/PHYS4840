@@ -55,8 +55,8 @@ for t in tpoints:
 
 a1 = 0.0
 b1 = 10000.0
-N1 = 1000
-h1 = (b1-a1)/N1
+N1 = 100000
+h1 = 0.1
 
 tpoints1 = np.arange(a1,b1,h1)
 xpoints1 = []
@@ -82,8 +82,9 @@ ax[0].set_title(f"[0,10] | N = {N}")
 
 ax[1].plot(tpoints1, xpoints1, label="Python RK2", linewidth = 5)
 ax[1].plot(tFort1, xFort1, label="Fortran RK2")
-ax[1].set_xlim(0, 35)
+ax[1].set_xlim(0, 200)
 ax[1].set_xlabel("t")
+ax[1].set_ylim(-5,5)
 ax[1].set_ylabel("x(t)")
 ax[1].legend()
 ax[1].set_title(f"[0,10000] | N = {N1}")
@@ -119,8 +120,8 @@ start = time.time()
 a1 = 0.0
 b1 = 10000.0
 #N1 = 100
-#N1 = 1000
-N1 = 10000
+N1 = 1000
+#N1 = 10000
 h1 = (b1-a1)/N1
 
 tpoints1 = np.arange(a1,b1,h1)

@@ -36,8 +36,8 @@ program RungeKutta4
     t = 0.0d0
     x = 1.0d0
     t_end = 10000.0d0
-    n = 1000
-    dt = (t_end - t) / n
+    n = 100000
+    dt = 0.1
     
     open(unit=11, file="prob3-2.dat", status="replace")
     write(11,*) "t x"
