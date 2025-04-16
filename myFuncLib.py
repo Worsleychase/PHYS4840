@@ -67,3 +67,24 @@ def euler_method(f, x0, t0, t_end, dt):
         x_values[i] = x_values[i - 1] + dt * f(x_values[i-1], t_values[i-1]) # sets x_value[i] where i is the current index to the previous x_value (i-1) + dt * f(x,t)
 
     return t_values, x_values # returns t_values and x_values
+
+def laplacian_operator(Phi, dx, dy, dz):
+    """
+    Compute the Laplacian of a scalar field Phi (i.e., apply the Poisson operator)
+    using central finite differences on a 3D uniform grid.
+
+    Parameters:
+    - Phi : 3D numpy array of shape (nx, ny, nz)
+    - dx, dy, dz : grid spacings in x, y, z directions
+
+    Returns:
+    - laplacian : 3D numpy array of the same shape as Phi
+    """
+
+    laplacian = (
+        (np.roll(Phi, -1, axis=0) - 2*Phi + np.roll(Phi, 1, axis=0)) / dx**2 +
+        (np.roll(Phi, -1, axis=1) - 2*Phi + np.roll(Phi, 1, axis=1)) / dy**2 +
+        (np.roll(Phi, -1, axis=2) - 2*Phi + np.roll(Phi, 1, axis=2)) / dz**2
+    )
+
+    return laplacian

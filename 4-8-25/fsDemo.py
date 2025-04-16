@@ -206,7 +206,7 @@ def my_signal(x):
 def main():
     import time
     TERMS = 200
-    wave = ecg_like_signal
+    wave = my_signal
 
     start = time.time()
     do_fourier(TERMS, wave)
