@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib.collections import LineCollection
 
-def genDoublePend(fileName,theta1,theta2,omega1,omega2,g=9.81,l=1,m=1):
+def genDoublePend(fileName,theta1,theta2,omega1,omega2,g=9.81,l=1,m=1,calcEn=False):
     # Initial conditions
     # State vector r = [theta1, theta2, omega1, omega2]
     r0 = np.array([theta1, theta2, omega1, omega2])  
@@ -72,10 +72,21 @@ def genDoublePend(fileName,theta1,theta2,omega1,omega2,g=9.81,l=1,m=1):
     x2 = x1 + l * np.sin(theta2_vals)
     y2 = y1 - l * np.cos(theta2_vals)
 
-    # Save data
-    np.savetxt(fileName, np.column_stack([t, x1, y1, x2, y2]),
-            header="time x1 y1 x2 y2", comments="")
-    
+    if (calcEn):
+        v1_sq = omega1_vals**2 * l**2
+        v2_sq = omega2_vals**2 * l**2 + 2 * omega1_vals * omega2_vals * l**2 * np.cos(theta1_vals - theta2_vals)
+        KE = 0.5 * m * (v1_sq + v2_sq)
+
+        PE = -m * g * (2 * l * np.cos(theta1_vals) + l * np.cos(theta2_vals))
+
+        E = KE + PE
+
+        np.savetxt(fileName, np.column_stack([t, x1, y1, x2, y2, E]),
+                    header="time x1 y1 x2 y2 E", comments="")        
+    else:
+        np.savetxt(fileName, np.column_stack([t, x1, y1, x2, y2]),
+                header="time x1 y1 x2 y2", comments="")
+        
     print(f"Data saved to {fileName}")
 
 name1 = "doublePend1.txt"
@@ -185,7 +196,7 @@ fps = 1000 // intervalMs
 ani = animation.FuncAnimation(fig, update, frames=len(timeArray), init_func=init, blit=True, interval=intervalMs)
 
 ani.save('tripleDoublePendulum.mp4', writer='ffmpeg', fps=fps)
-
+plt.close()
 '''
 The first two pendulums stay relatively the same until around 6 seconds in. But the 3rd pendulum goes chaotic right at the beginning.
 '''
@@ -201,3 +212,57 @@ The first two pendulums stay relatively the same until around 6 seconds in. But 
 # --------------------------------------------------------------------------
 
 # part b)
+
+genDoublePend("problem2b.txt", theta1=np.radians(90), theta2=np.radians(90), omega1=0,omega2=0,g=9.81,l=0.4,m=1,calcEn=True)
+data = np.loadtxt("problem2b.txt", skiprows=1)
+    
+time = data[:, 0]
+energy = data[:, -1]
+
+plt.figure(figsize=(10, 6))
+plt.plot(time, energy, label='Total Energy')
+plt.xlabel('Time (s)')
+plt.ylabel('Total Energy (J)')
+plt.ylim(-5,5)
+plt.title('Total Energy of the Double Pendulum vs Time')
+plt.grid(True, alpha=0.3)
+plt.legend()
+plt.savefig('problem2b.png')
+#plt.show()
+
+# --------------------------------------------------------------------------
+# Problem 3
+# --------------------------------------------------------------------------
+from scipy.io import wavfile
+
+def compressAudio(audio, keepRatio=0.5):
+    # keep ratio only keeps that fraction of the strongest frequencies
+    N = len(audio)
+    x = np.fft.fft(audio)
+    magnitudes = np.abs(x)
+
+    numKeep = int(N * keepRatio)
+    sortedIndices = np.argsort(magnitudes)[::-1]
+
+    mask = np.zeros(N, dtype=bool)
+    mask[sortedIndices[:numKeep]] = True
+
+    xCompressed = x * mask
+    compressedAudio = np.fft.ifft(xCompressed)
+
+    return np.real(compressedAudio), xCompressed
+sampleRate, audioData = wavfile.read("audio.wav")
+
+if len(audioData.shape) > 1: # ChatGPT made this, idk why but it prevents a .wav error
+    audioData = audioData.mean(axis=1)
+
+compressedAudio, compressedSpectrum = compressAudio(audioData, keepRatio=0.5)
+
+wavfile.write("compressed_audio.wav", sampleRate, compressedAudio.astype(np.int16))
+
+# --------------------------------------------------------------------------
+# Problem 4
+# --------------------------------------------------------------------------
+'''
+Jpegs are not perfect compressions. They lose some amount of data when being compressed which means that they lose small details and high-precision stuff, typically the things scientists are interested in. They also get artifacts from compression that can cause incorrect data assumptions.
+'''
