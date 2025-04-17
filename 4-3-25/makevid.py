@@ -1,4 +1,3 @@
-
 #####################################
 #
 # Class 20: Boundary-Value problems;
@@ -16,8 +15,8 @@ t, x1, y1, x2, y2 = data.T
 
 # Set up the figure and axis
 fig, ax = plt.subplots(figsize=(6, 6))
-ax.set_xlim(-1.0, 1.0)
-ax.set_ylim(-1.0, 1.0)
+ax.set_xlim(-5.0, 5.0)
+ax.set_ylim(-5.0, 5.0)
 ax.set_xlabel("X position (m)")
 ax.set_ylabel("Y position (m)")
 ax.set_title("Double Pendulum Simulation")
@@ -54,9 +53,9 @@ def update(frame):
     line2.set_data([x1_pos, x2_pos], [y1_pos, y2_pos])  # Line from mass 1 to mass 2
 
     # Update the positions of the masses
-    mass1.set_data(x1_pos, y1_pos)
-    mass2.set_data(x2_pos, y2_pos)
-    
+    mass1.set_data([x1_pos], [y1_pos])
+    mass2.set_data([x2_pos], [y2_pos])
+
     return line1, line2, mass1, mass2
 
 # Set up the animation

@@ -6,11 +6,13 @@
 #
 #####################################
 import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 # Constants
 g = 9.81  # Gravity (m/s^2)
-l = 0.4   # Length of pendulum arms (m)
-m = 1.3942   # Mass of pendulums (kg)
+l = 1   # Length of pendulum arms (m)
+m = 1   # Mass of pendulums (kg)
 
 # Initial conditions
 theta1 = np.radians(90)

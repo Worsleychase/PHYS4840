@@ -108,8 +108,8 @@ def fft_ct(x):
         raise ValueError("Signal length must be a power of 2")
     
     # Split even and odd indices
-    even = fft(x[0::2])
-    odd = fft(x[1::2])
+    even = fft_ct(x[0::2])
+    odd = fft_ct(x[1::2])
     
     # Twiddle factors
     twiddle = np.exp(-2j * np.pi * np.arange(N//2) / N)

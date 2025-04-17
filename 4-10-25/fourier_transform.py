@@ -80,9 +80,14 @@ def fft_bluestein(x):
 
 def fft_zeropad(x):
     N = len(x)
-    next_pow2 = 1 << (N - 1).bit_length()
-    x_padded = np.pad(x, (0, next_pow2 - N), mode='constant')
-    return fft_radix2(x_padded)
+    next_pow2 = 1 << (N - 1).bit_length()  # Find next power of 2 greater than or equal to N
+    if next_pow2 != N:
+        x_padded = np.pad(x, (0, next_pow2 - N), mode='constant')  # Zero pad the input signal
+        return fft_ct(x_padded)  # Use fft_ct to compute FFT on the zero-padded signal
+    else:
+        # No padding needed, just return the FFT using fft_ct
+        return fft_ct(x)
+
 
 
 
@@ -108,8 +113,8 @@ def fft_ct(x):
         raise ValueError("Signal length must be a power of 2")
     
     # Split even and odd indices
-    even = fft(x[0::2])
-    odd = fft(x[1::2])
+    even = fft_ct(x[0::2])
+    odd = fft_ct(x[1::2])
     
     # Twiddle factors
     twiddle = np.exp(-2j * np.pi * np.arange(N//2) / N)

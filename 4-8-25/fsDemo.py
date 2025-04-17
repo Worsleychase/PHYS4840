@@ -15,6 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import fourier_series as fs
+import time
 
 def do_fourier(TERMS, wave):
 
@@ -28,10 +29,22 @@ def do_fourier(TERMS, wave):
     a0, an, bn = fs.compute_coefficients(wave, TERMS)
 
     # Calculate the Fourier approximation
-    y_approx, time = fs.fourier_series_approximation(x, a0, an, bn)
+    y_approx, timeTaken = fs.fourier_series_approximation(x, a0, an, bn)
+    timeArr = []
 
     # Calculate partial approximations
     partial_approx = fs.compute_partial_approximations(x, a0, an, bn)
+
+    errors = []
+    term_counts = range(1, TERMS + 1)
+
+    for n_terms in term_counts:
+        start = time.time()
+        y_approx, _ = fs.fourier_series_approximation(x, a0, an[:n_terms], bn[:n_terms])
+        stop = time.time()
+        error = np.sqrt(np.mean((y_exact - y_approx)**2))
+        errors.append(error)
+        timeArr.append(stop - start)
 
     # 1. Plot the series with TERMS set
     plt.figure(figsize=(10, 6))
@@ -43,10 +56,6 @@ def do_fourier(TERMS, wave):
     plt.ylabel('f(x)')
     plt.show()#plt.savefig('fourier_approximation.png')
     plt.close()
-    
-
-
-
 
     # 2. Plot the power spectral density (PSD) / coefficient spectrum
     plt.figure(figsize=(10, 6))
@@ -66,18 +75,8 @@ def do_fourier(TERMS, wave):
     plt.show()#plt.savefig('coefficient_spectrum.png')
     plt.close()
     
-
-
-
-
     # 3. Convergence and error analysis
     # Calculate error for each partial approximation
-    errors = []
-    term_counts = range(1, TERMS + 1)
-    
-    for i, approx in enumerate(partial_approx):
-        error = np.sqrt(np.mean((y_exact - approx)**2))
-        errors.append(error)
     
     plt.figure(figsize=(10, 6))
     plt.plot(term_counts, errors, 'bo-')
@@ -95,10 +94,14 @@ def do_fourier(TERMS, wave):
     plt.ylabel('RMS Error')
     plt.show()#plt.savefig('convergence_rate_log.png')
     plt.close()
-    
 
-
-
+    plt.figure(figsize=(10, 6))
+    plt.plot(timeArr, errors, 'bo-')
+    plt.grid(True, alpha=0.3)
+    plt.xlabel('Time taken (sec)')
+    plt.ylabel('RMS Error')
+    plt.show()  # plt.savefig('time_vs_error.png')
+    plt.close()
 
     # 4. Create an animation showing how the approximation improves with terms
     fig, ax = plt.subplots(figsize=(10, 6))
@@ -135,16 +138,11 @@ def do_fourier(TERMS, wave):
         terms_text.set_text(f'Terms: {n_terms}')
         return approx_line, terms_text
     
-    ani = FuncAnimation(fig, update, frames=TERMS,
-                       init_func=init, blit=True, interval=200)
+    ani = FuncAnimation(fig, update, frames=TERMS, init_func=init, blit=True, interval=200)
     
     plt.show()
     ani.save('fourier_animation.gif', writer='pillow', fps=5)
     plt.close()
-    
-
-
-
 
 #some example wave forms, I encourage you to make your own :)
 
@@ -204,17 +202,10 @@ def my_signal(x):
 
 
 def main():
-    import time
     TERMS = 200
     wave = my_signal
 
-    start = time.time()
     do_fourier(TERMS, wave)
-    stop = time.time()
-
-    time = stop - start
-
-    print("Natively took: ", time)
 
 if __name__ == "__main__":
     main()
