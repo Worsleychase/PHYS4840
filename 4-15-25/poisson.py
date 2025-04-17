@@ -32,6 +32,6 @@ def laplacian_operator(Phi, dx, dy, dz):
 '''
 a) np.roll() just shifts every element in an array by some integer
 
-b)
+b) see 3dsolver.py
 
 '''

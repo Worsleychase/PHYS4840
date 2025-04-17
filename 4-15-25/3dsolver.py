@@ -49,14 +49,14 @@ while delta > target:
 # Visualization: middle slice in z-direction
 mid_z = N // 2
 plt.figure(figsize=(6,5))
-plt.imshow(phi[:,0,:], origin='lower', cmap='inferno')
+plt.imshow(phi[:,15,:], origin='lower', cmap='inferno')
 plt.colorbar(label='Potential $\Phi$')
 plt.title(f"Midplane slice at z = {mid_z}")
 plt.xlabel('x')
 plt.ylabel('y')
 plt.tight_layout()
 plt.show()
-
+plt.close()
 
 '''
 a) 3rd dimension (z) adds two more terms
@@ -74,4 +74,54 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import myFuncLib as mfl
 
-thing = mfl.laplacian_operator(phi, h,h,h)
+# Constants
+N = 30              # Grid size (cube of size N x N x N)
+h = 1               # Grid spacing
+V = 1.0             # Voltage on the top face (z = 0)
+target = 1e-4       # Convergence criterion
+
+# Initialize the potential arrays
+phi = np.zeros((N+1, N+1, N+1), dtype=float)
+phinew = np.empty_like(phi)
+
+# Apply boundary condition: top face (z = 0) at V, others at 0
+phi[:,:,0] = V
+
+# Iterative solution using Gauss-Seidel-like update
+delta = 1.0
+iteration = 0
+while delta > target:
+    iteration += 1
+    for i in range(1, N):
+        for j in range(1, N):
+            for k in range(1, N):
+                phinew[i,j,k] = (phi[i+h,j,k] + phi[i-h,j,k] +
+                                 phi[i,j+h,k] + phi[i,j-h,k] +
+                                 phi[i,j,k+h] + phi[i,j,k-h]) / 6.0
+
+    # Preserve boundary conditions
+    phinew[:,:,0] = V
+    phinew[:,:,N] = 0
+    phinew[:,0,:] = 0
+    phinew[:,N,:] = 0
+    phinew[0,:,:] = 0
+    phinew[N,:,:] = 0
+
+    thingDelta = mfl.laplacian_operator(phinew,h,h,h)
+    delta = np.max(np.abs(thingDelta))
+    phi, phinew = phinew, phi
+
+    if iteration % 10 == 0:
+        print(f"Iteration {iteration}, max delta = {delta:.2e}")
+
+# Visualization: middle slice in z-direction
+mid_z = N // 2
+plt.figure(figsize=(6,5))
+plt.imshow(phi[:,15,:], origin='lower', cmap='inferno')
+plt.colorbar(label='Potential $\Phi$')
+plt.title(f"Midplane slice at z = {mid_z}")
+plt.xlabel('x')
+plt.ylabel('y')
+plt.tight_layout()
+plt.show()
+plt.close()
